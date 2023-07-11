@@ -66,6 +66,51 @@ public class LL {
         }
         size += 1;
     }
+
+    public int deleteBeginning() {
+        int val = head.value;
+        head = head.next;
+        if(head == null) {
+            tail = null;
+        }
+        size -= 1;
+        return val;
+    }
+
+    public int deleteEnd() {
+        if (size <= 1) {
+            return deleteBeginning();
+        }
+        Node secondLast = get(size - 2);
+        int val = tail.value;
+        tail = secondLast;
+        tail.next = null;
+        return val;
+    }
+
+    public Node get(int index) {
+        Node node = head;
+        for(int i = 0; i < index; i++) {
+            node = node.next;
+        }
+        return node;
+    }
+
+    public int deletePosition(int pos) {
+        if (pos == 0) {
+            return deleteBeginning();
+        }
+        if (pos == size - 1) {
+            return deleteEnd();
+        }
+       
+        Node node = get(pos - 1);
+        int val = node.next.value;
+        node.next = node.next.next;
+        return val;
+
+    }
+
     public void dispaly() {
         Node temp = head;
         while (temp != null) {
@@ -83,7 +128,11 @@ public class LL {
         list.insertNode(34);
         list.insertLast(87);
         list.insertPosition(67, 2);
-
+        System.out.println(list.deleteBeginning());
+        list.dispaly();
+        System.out.println(list.deleteEnd());
+        list.dispaly();
+        System.out.println(list.deletePosition(2));
         list.dispaly();
     }
 }
