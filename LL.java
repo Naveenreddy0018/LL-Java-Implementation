@@ -131,6 +131,20 @@ public class LL {
         System.out.print("END");
     }
 
+    public static ListNode reverseLinkedList(ListNode head) {
+        ListNode prevNode = null;
+        ListNode currNode = head;
+
+        while (currNode != null) {
+            ListNode nextNode = currNode.next;
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = nextNode;
+        }
+
+        return prevNode;
+    }
+
     public static void main(String[] args) {
         LL list = new LL();
         list.insertNode(3);
