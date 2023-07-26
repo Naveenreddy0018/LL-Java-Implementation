@@ -67,6 +67,22 @@ public class LL {
         size += 1;
     }
 
+    /* Inserting using Recursion */
+
+    public void insertRec(int value, int index) {
+        head = insertRec(value, index, head);
+    }
+    private insertRec(int value, int index, Node node) {
+        if(index == 0) {
+            Node temp = new Node(value, node);
+            size++;
+            return temp;
+        }
+
+        node.next = insertRec(value, index-1, node.next);
+        return node;
+    }
+
     public int deleteBeginning() {
         int val = head.value;
         head = head.next;
